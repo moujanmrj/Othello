@@ -39,8 +39,10 @@ public class Board
      * @param x is the row of the coordinate
      * @param y is the column of the coordinate
      * @param player is the player which wants to move
+     * @param putting is a boolean that separates the parts that pass method needs in this method
+     * @return a boolean named canMove which shows if the move is valid or not
      */
-    public void checkDisk(int x, int y, String player)
+    public boolean checkDisk(int x, int y, String player, boolean putting)
     {
         int theX = x, theY = y;
         boolean canMove = false;
@@ -52,6 +54,7 @@ public class Board
                     if (boardGame[x - 1][y - 1].getColor().equals("black"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard1(theX,theY,-1,-1);
                         break;
                     }
@@ -68,6 +71,7 @@ public class Board
                     if (boardGame[x - 1][y].getColor().equals("black"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard1(theX,theY,-1,0);
                         break;
                     }
@@ -84,6 +88,7 @@ public class Board
                     if (boardGame[x - 1][y + 1].getColor().equals("black"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard1(theX,theY,-1,+1);
                         break;
                     }
@@ -100,6 +105,7 @@ public class Board
                     if (boardGame[x][y - 1].getColor().equals("black"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard1(theX,theY,0,-1);
                         break;
                     }
@@ -115,6 +121,7 @@ public class Board
                     if (boardGame[x][y + 1].getColor().equals("black"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard1(theX,theY,0,+1);
                         break;
                     }
@@ -131,6 +138,7 @@ public class Board
                     if (boardGame[x + 1][y - 1].getColor().equals("black"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard1(theX,theY,+1,-1);
                         break;
                     }
@@ -147,6 +155,7 @@ public class Board
                     if (boardGame[x + 1][y].getColor().equals("black"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard1(theX,theY,+1,0);
                         break;
                     }
@@ -163,6 +172,7 @@ public class Board
                     if (boardGame[x + 1][y + 1].getColor().equals("black"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard1(theX,theY,+1,+1);
                         break;
                     }
@@ -182,6 +192,7 @@ public class Board
                     if (boardGame[x-1][y-1].getColor().equals("white"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard2(theX,theY,-1,-1);
                         break;
                     }
@@ -199,6 +210,7 @@ public class Board
                     if (boardGame[x-1][y].getColor().equals("white"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard2(theX,theY,-1,0);
                         break;
                     }
@@ -216,6 +228,7 @@ public class Board
                     if (boardGame[x-1][y+1].getColor().equals("white"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard2(theX,theY,-1,+1);
                         break;
                     }
@@ -233,6 +246,7 @@ public class Board
                     if (boardGame[x][y-1].getColor().equals("white"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard2(theX,theY,0,-1);
                         break;
                     }
@@ -249,6 +263,7 @@ public class Board
                     if (boardGame[x][y+1].getColor().equals("white"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard2(theX,theY,0,+1);
                         break;
                     }
@@ -266,6 +281,7 @@ public class Board
                     if (boardGame[x+1][y-1].getColor().equals("white"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard2(theX,theY,+1,-1);
                         break;
                     }
@@ -283,6 +299,7 @@ public class Board
                     if (boardGame[x+1][y].getColor().equals("white"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard2(theX,theY,+1,0);
                         break;
                     }
@@ -300,6 +317,7 @@ public class Board
                     if (boardGame[x + 1][y + 1].getColor().equals("white"))
                     {
                         canMove = true;
+                        if (putting)
                         changeBoard2(theX,theY,+1,+1);
                         break;
                     }
@@ -308,7 +326,25 @@ public class Board
                 }
             }
         }
-        //updating the board after a move
+        if (putting)
+        {
+            //updating the board after a move
+            putDisk(canMove,player,theX,theY);
+        }
+        return  canMove;
+    }
+
+    /**
+     * this method puts the disks and changes the disks in between and updates the board game
+     * and then prints the updated map and checks if the game has ended or nor
+     *
+     * @param canMove shows if the move is valid
+     * @param player is the player who is putting the disk
+     * @param theX the row of the coordinate of the disk we want to put
+     * @param theY the column of the coordinate of the disk we want to put
+     */
+    public void putDisk(boolean canMove, String player,int theX, int theY)
+    {
         if (canMove && player.equals("black"))
         {
             boardGame[theX][theY].setColor("black");
@@ -420,6 +456,7 @@ public class Board
 
     /**
      * this method changes the board for the valid move (black player)
+     *
      * @param x is the valid row coordinate the player wants to put disk in there
      * @param y is the valid column coordinate the player wants to put disk in there
      * @param i is row the extension (the disks in between) that have to change
@@ -439,6 +476,7 @@ public class Board
 
     /**
      * this method changes the board for the valid move (white player)
+     *
      * @param x is the valid row coordinate the player wants to put disk in there
      * @param y is the valid column coordinate the player wants to put disk in there
      * @param i is row the extension (the disks in between) that have to change
@@ -454,5 +492,35 @@ public class Board
             x = x + i;
             y = y + j;
         }
+    }
+
+    /**
+     * this method is for checking if the player has move or not
+     *
+     * @param player the player that we want to check
+     */
+    public void pass(String player)
+    {
+        boolean passing = false;
+        for (int i=0; i<8; i++)
+        {
+            for (int j=0; j<8; j++)
+            {
+                if (boardGame[i][j].getColor().equals("noColor") && player.equals("black"))
+                {
+                    if (checkDisk(i,j,"black",false))
+                        passing = true;
+                }
+
+                else if (boardGame[i][j].getColor().equals("noColor") && player.equals("white"))
+                {
+                    if(checkDisk(i,j,"white",false))
+                        passing = true;
+                }
+
+            }
+        }
+        if (!passing)
+            System.out.println("Pass! Write Pass Then Press Enter And Move On");
     }
 }

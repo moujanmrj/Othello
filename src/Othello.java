@@ -23,6 +23,8 @@ public class Othello
         {
             Scanner scanMove = new Scanner(System.in);
 
+            //checking if the player has a move at all
+            game.pass("black");
             //scanning the move we want to play(black player)
             System.out.println("Black Turn");
             String moveBlack = scanMove.nextLine();
@@ -32,7 +34,8 @@ public class Othello
             }
             blackPlayer.checkCoordinate(moveBlack,"black",game);
 
-
+            //checking if the player has a move at all
+            game.pass("white");
             //scanning the move we want to play(white player)
             System.out.println("White Turn");
             String moveWhite = scanMove.nextLine();
@@ -42,7 +45,6 @@ public class Othello
                 moveWhite = scanMove.nextLine();
             }
             blackPlayer.checkCoordinate(moveWhite,"white",game);
-
         }
     }
 }

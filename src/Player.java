@@ -14,22 +14,26 @@ public class Player
 
     /**
      * this method returns the player color (black or white)
+     *
      * @return player color
      */
     public String getPlayerColor() { return playerColor; }
     /**
      * this method returns the board we are playing in
+     *
      * @return the board we're playing in
      */
     public Board getBoard() { return board; }
 
     /**
      * this method sets the player color (black or white)
+     *
      * @param playerColor is the player color
      */
     public void setPlayerColor(String playerColor) { this.playerColor = playerColor; }
     /**
      * this method sets the board we are playing in
+     *
      * @param board the board we're playing in
      */
     public void setBoard(Board board) { this.board = board; }
@@ -37,6 +41,7 @@ public class Player
     /**
      * this method is the constructor
      * it gets a player and the board it wants to play in
+     *
      * @param playerColor the player color (black or white)
      * @param board the board it wants to play in
      */
@@ -48,6 +53,7 @@ public class Player
 
     /**
      * this method is for converting the move to actual coordinates
+     *
      * @param move is the string that shows the move
      * @param player is the payer that wants to move
      * @param board is the board we're playing in
@@ -90,6 +96,6 @@ public class Player
             default:
                 System.out.println("Wrong Coordinate!Try again=))");
         }
-        board.checkDisk(x,y,player);
+        board.checkDisk(x,y,player,true);
     }
 }
