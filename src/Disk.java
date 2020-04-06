@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * this class is for the disks in the board
  * it holds their color

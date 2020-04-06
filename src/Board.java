@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * this class is the board and the methods for lacing disks in the board
  * and sets a board for a new game and changes it and prints it

@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * this class is the player class and has 2 players (black and white)
  * and holds the board we are playing in
